@@ -143,11 +143,11 @@
         lower_layer {
             display-name = "LOWER";
             bindings = <
-&kp ESC    &kp F1    &kp F2            &kp F3     &kp F4  &kp F5           &bt BT_CLR   &kp C_MUTE  &kp F6         &kp F7      &kp F8    &kp F9     &kp F10   &kp DEL
-&kp TAB    &trans    &kp UP            &trans     &trans  &out OUT_TOG     &kp PAGE_UP  &kp HOME    &kp UP         &kp END     &kp HOME  &kp BSLH
-&none      &kp LEFT  &mt LEFT_ALT TAB  &kp RIGHT  &trans  &trans           &mkp RCLK    &mkp RCLK   &kp PAGE_DOWN  &kp LEFT    &kp DOWN  &kp RIGHT  &kp SQT   &kp ENTER
-&kp LSHFT  &trans    &trans            &trans     &trans  &rgb_ug RGB_TOG  &trans       &trans      &bl BL_DEC     &bl BL_INC  &trans    &trans     &kp LBKT  &kp RBKT   &kp UNDER  &kp PLUS
-&BOT       &kp LGUI  &kp LALT          &kp SPACE  &mo 1   &trans           &trans       &trans      &kp DOT        &BOT
+&kp ESC    &kp F1                       &kp F2            &kp F3     &kp F4  &kp F5           &bt BT_CLR   &kp C_MUTE  &kp F6         &kp F7      &kp F8    &kp F9     &kp F10   &kp DEL
+&kp TAB    &trans                       &kp UP            &trans     &trans  &out OUT_TOG     &kp PAGE_UP  &kp HOME    &kp UP         &kp END     &kp HOME  &kp BSLH
+&none      &mt LEFT_ALT LC(LEFT_ARROW)  &mt LEFT_ALT TAB  &kp RIGHT  &trans  &trans           &mkp RCLK    &mkp RCLK   &kp PAGE_DOWN  &kp LEFT    &kp DOWN  &kp RIGHT  &kp SQT   &kp ENTER
+&kp LSHFT  &trans                       &trans            &trans     &trans  &rgb_ug RGB_TOG  &trans       &trans      &bl BL_DEC     &bl BL_INC  &trans    &trans     &kp LBKT  &kp RBKT   &kp UNDER  &kp PLUS
+&BOT       &kp LGUI                     &kp LALT          &kp SPACE  &mo 1   &trans           &trans       &trans      &kp DOT        &BOT
             >;
 
             sensor-bindings = <&BLE_encoder &inc_dec_kp UP DOWN>;
