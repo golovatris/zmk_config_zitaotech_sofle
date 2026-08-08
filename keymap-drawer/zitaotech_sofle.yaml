@@ -110,9 +110,9 @@ layers:
   - ENTER
   - LSHFT
   - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
+  - Sft+Ctl+PAGE UP
+  - Ctl+W
+  - Alt+Sft+PAGE DOWN
   - RGB TOG
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
