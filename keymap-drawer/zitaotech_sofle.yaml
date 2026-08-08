@@ -61,7 +61,7 @@ layers:
   - LEFT ALT
   - ''
   - SPACE
-  - LOWER
+  - '&mod_key'
   - {t: SPACE, h: LCTRL}
   - LOWER
   - '-'
@@ -128,9 +128,9 @@ layers:
   - LGUI
   - LALT
   - SPACE
-  - {t: LOWER, type: held}
+  - LOWER
   - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
+  - {type: held}
   - {t: ▽, type: trans}
   - .
   - '&bootloader'
