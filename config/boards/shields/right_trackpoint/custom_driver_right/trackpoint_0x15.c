@@ -15,6 +15,7 @@
 #include <math.h>
 #include <zmk/event_manager.h>
 #include <zmk/events/position_state_changed.h>
+#include <zmk/events/layer_state_changed.h>
 
 #include <zephyr/input/input.h>
 #include <zephyr/logging/log.h>
@@ -87,6 +88,7 @@ static uint32_t last_activity_time = 0;
 static bool scroll_key_pressed = false;
 static bool arrow_key_pressed = false;
 static bool slow_key_pressed = false;
+static bool lower_layer_active = false;
 static bool last_scroll_key_pressed = false; // ★ NEW
 static bool last_arrow_key_pressed = false;
 uint32_t last_packet_time = 0;
@@ -134,6 +136,20 @@ static int special_key_listener_cb(const zmk_event_t *eh) {
 }
 ZMK_LISTENER(trackpoint_special_key_listener, special_key_listener_cb);
 ZMK_SUBSCRIPTION(trackpoint_special_key_listener, zmk_position_state_changed);
+
+// Scroll while LOWER (layer 1) is active — no key to hold.
+#define TRACKPOINT_SCROLL_LAYER 1
+
+static int layer_state_listener_cb(const zmk_event_t *eh) {
+    const struct zmk_layer_state_changed *ev = as_zmk_layer_state_changed(eh);
+    if (ev && ev->layer == TRACKPOINT_SCROLL_LAYER) {
+        lower_layer_active = ev->state;
+    }
+    return ZMK_EV_EVENT_BUBBLE;
+}
+
+ZMK_LISTENER(trackpoint_layer_listener, layer_state_listener_cb);
+ZMK_SUBSCRIPTION(trackpoint_layer_listener, zmk_layer_state_changed);
 
 struct trackpoint_config {
     struct i2c_dt_spec i2c;
@@ -305,7 +321,8 @@ static void trackpoint_work_cb(struct k_work *work) {
     last_activity_time = now;
 
     /* ========= scroll mode 切换检测 ========= */
-    bool just_enter_scroll = scroll_key_pressed && !last_scroll_key_pressed;
+    bool scroll_active = scroll_key_pressed || lower_layer_active;
+    bool just_enter_scroll = scroll_active && !last_scroll_key_pressed;
     bool just_enter_arrow = arrow_key_pressed && !last_arrow_key_pressed;
     bool capslock = current_indicators & HID_INDICATORS_CAPS_LOCK;
 
@@ -339,7 +356,7 @@ static void trackpoint_work_cb(struct k_work *work) {
                            INPUT_BTN_2,  // 上
                            INPUT_BTN_3); // 下
         k_msleep(16);
-    } else if (scroll_key_pressed) {
+    } else if (scroll_active) {
 
         if (just_enter_scroll) {
             data->scroll_residue_x = dx * SCROLL_X_DIR;
@@ -385,7 +402,7 @@ static void trackpoint_work_cb(struct k_work *work) {
         input_report_rel(dev, INPUT_REL_Y, -(int)fy, true, K_NO_WAIT);
     }
 
-    last_scroll_key_pressed = scroll_key_pressed;
+    last_scroll_key_pressed = scroll_active;
     last_arrow_key_pressed = arrow_key_pressed;
     data->last_packet_time = now;
         k_msleep(5);
