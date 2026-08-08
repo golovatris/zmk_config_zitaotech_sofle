@@ -58,6 +58,13 @@
             bindings = <&kp UP>;
         };
 
+        ip_y_invert: ip_y_invert {
+            compatible = "zmk,input-processor-scaler";
+            #input-processor-cells = <2>;
+            type = <INPUT_EV_REL>;
+            codes = <INPUT_REL_Y>;
+        };
+
         ip_xy_to_scroll: ip_xy_to_scroll {
             compatible = "zmk,input-processor-code-mapper";
             #input-processor-cells = <0>;
@@ -245,6 +252,6 @@
 &trackpoint_listener {
     scroller {
         layers = <LOWER>;
-        input-processors = <&ip_xy_to_scroll>;
+        input-processors = <&ip_y_invert -1 1>, <&ip_xy_to_scroll>;
     };
 };
