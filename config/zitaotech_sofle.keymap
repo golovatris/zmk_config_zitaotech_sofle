@@ -12,7 +12,6 @@
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/pointing.h>
 #include <dt-bindings/zmk/rgb.h>
-#include <input/processors.dtsi>
 
 #define FUNC 1
 #define RES 2
@@ -57,6 +56,16 @@
             type = <INPUT_EV_KEY>;
             codes = <INPUT_BTN_3>;
             bindings = <&kp UP>;
+        };
+
+        ip_xy_to_scroll: ip_xy_to_scroll {
+            compatible = "zmk,input-processor-code-mapper";
+            #input-processor-cells = <0>;
+            type = <INPUT_EV_REL>;
+            map
+                = <INPUT_REL_Y INPUT_REL_WHEEL>
+                , <INPUT_REL_X INPUT_REL_HWHEEL>
+                ;
         };
     };
 };
@@ -236,6 +245,6 @@
 &trackpoint_listener {
     scroller {
         layers = <LOWER>;
-        input-processors = <&zip_xy_to_scroll_mapper>;
+        input-processors = <&ip_xy_to_scroll>;
     };
 };
