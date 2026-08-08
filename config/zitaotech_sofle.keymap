@@ -65,6 +65,14 @@
             codes = <INPUT_REL_Y>;
         };
 
+        ip_x_half: ip_x_half {
+            compatible = "zmk,input-processor-scaler";
+            #input-processor-cells = <2>;
+            type = <INPUT_EV_REL>;
+            codes = <INPUT_REL_X>;
+            track-remainders;
+        };
+
         ip_xy_to_scroll: ip_xy_to_scroll {
             compatible = "zmk,input-processor-code-mapper";
             #input-processor-cells = <0>;
@@ -252,6 +260,6 @@
 &trackpoint_listener {
     scroller {
         layers = <LOWER>;
-        input-processors = <&ip_y_invert -1 1>, <&ip_xy_to_scroll>;
+        input-processors = <&ip_x_half 1 2>, <&ip_y_invert (-1) 1>, <&ip_xy_to_scroll>;
     };
 };
