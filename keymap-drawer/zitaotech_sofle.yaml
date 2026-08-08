@@ -124,16 +124,16 @@ layers:
   - ']'
   - _
   - +
-  - '&bootloader'
-  - LGUI
-  - LALT
-  - SPACE
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - .
-  - '&bootloader'
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
   RAISE:
   - {t: BT, h: '0'}
   - {t: BT, h: '1'}
@@ -191,7 +191,7 @@ layers:
   - ''
   - ''
   - ''
-  - ''
+  - '&bootloader'
   - ''
   - {type: held}
   - ''
@@ -200,7 +200,7 @@ layers:
   - ''
   - ''
   - ''
-  - ''
+  - '&bootloader'
   Mouse:
   - ''
   - ''
