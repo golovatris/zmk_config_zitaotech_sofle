@@ -57,9 +57,9 @@ layers:
   - .
   - /
   - RSHIFT
-  - LCTRL
-  - LGUI
-  - LALT
+  - LEFT GUI
+  - LEFT ALT
+  - ''
   - SPACE
   - LOWER
   - {t: SPACE, h: LCTRL}
