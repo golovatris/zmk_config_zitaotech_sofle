@@ -83,7 +83,7 @@ layers:
   - F10
   - DEL
   - TAB
-  - {t: ▽, type: trans}
+  - ESCAPE
   - Ctl+PAGE UP
   - Ctl+T
   - Ctl+PAGE DOWN
