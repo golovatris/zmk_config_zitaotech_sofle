@@ -97,7 +97,7 @@ layers:
   - ''
   - Alt+Ctl+LEFT ARROW
   - {t: TAB, h: LEFT ALT}
-  - RIGHT
+  - '&alt_latch TAB'
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - '&mkp RCLK'
