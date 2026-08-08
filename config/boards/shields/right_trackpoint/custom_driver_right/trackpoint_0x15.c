@@ -27,9 +27,6 @@
 
 LOG_MODULE_REGISTER(trackpoint, LOG_LEVEL_DBG);
 
-/* Scroll is armed by a Scroll Lock key-toggle from the keymap (no key to hold). */
-#define TRACKPOINT_SCROLL_LED_MASK (1 << 0) /* HID indicator LED 0 = Scroll Lock */
-
 /* ========= ⭐ TrackPoint 专用 Work Queue ========= */
 #define TP_WORKQ_STACK_SIZE 2048
 #define TP_WORKQ_PRIORITY 5
@@ -308,10 +305,9 @@ static void trackpoint_work_cb(struct k_work *work) {
     last_activity_time = now;
 
     /* ========= scroll mode 切换检测 ========= */
-    bool scroll_led = current_indicators & TRACKPOINT_SCROLL_LED_MASK;
-    bool just_enter_scroll = scroll_led && !last_scroll_key_pressed;
-    bool just_enter_arrow = arrow_key_pressed && !last_arrow_key_pressed;
     bool capslock = current_indicators & HID_INDICATORS_CAPS_LOCK;
+    bool just_enter_scroll = capslock && !last_scroll_key_pressed;
+    bool just_enter_arrow = arrow_key_pressed && !last_arrow_key_pressed;
 
     if (arrow_key_pressed) {
 
@@ -343,7 +339,7 @@ static void trackpoint_work_cb(struct k_work *work) {
                            INPUT_BTN_2,  // 上
                            INPUT_BTN_3); // 下
         k_msleep(16);
-    } else if (scroll_led) {
+    } else if (capslock) {
 
         if (just_enter_scroll) {
             data->scroll_residue_x = dx * SCROLL_X_DIR;
@@ -389,7 +385,7 @@ static void trackpoint_work_cb(struct k_work *work) {
         input_report_rel(dev, INPUT_REL_Y, -(int)fy, true, K_NO_WAIT);
     }
 
-    last_scroll_key_pressed = scroll_led;
+    last_scroll_key_pressed = capslock;
     last_arrow_key_pressed = arrow_key_pressed;
     data->last_packet_time = now;
         k_msleep(5);
