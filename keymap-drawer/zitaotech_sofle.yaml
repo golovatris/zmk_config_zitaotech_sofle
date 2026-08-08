@@ -95,7 +95,7 @@ layers:
   - HOME
   - \
   - ''
-  - '&caps_word'
+  - ''
   - Alt+Ctl+LEFT ARROW
   - '&alt_latch TAB'
   - Alt+Ctl+RIGHT ARROW
