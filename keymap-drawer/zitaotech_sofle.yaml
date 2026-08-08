@@ -60,10 +60,10 @@ layers:
   - LEFT GUI
   - LEFT ALT
   - ''
-  - SPACE
   - '&mod_key'
+  - BACKSPACE
   - {t: SPACE, h: LCTRL}
-  - '&mod_key'
+  - {t: SPACE, h: LCTRL}
   - '-'
   - '='
   - '`'
