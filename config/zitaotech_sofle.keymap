@@ -12,6 +12,7 @@
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/pointing.h>
 #include <dt-bindings/zmk/rgb.h>
+#include <input/processors.dtsi>
 
 #define FUNC 1
 #define RES 2
@@ -226,5 +227,15 @@
 &trans  &trans  &trans  &trans   &trans  &trans  &trans  &trans  &trans  &trans
             >;
         };
+    };
+};
+
+/* While layer 1 (LOWER) is held, the right trackpoint scrolls instead of moving
+ * the pointer. The override replaces the listener's base processors for that layer,
+ * so trackpoint movement no longer temp-activates the Mouse layer during scroll. */
+&trackpoint_listener {
+    scroller {
+        layers = <LOWER>;
+        input-processors = <&zip_xy_to_scroll_mapper>;
     };
 };
