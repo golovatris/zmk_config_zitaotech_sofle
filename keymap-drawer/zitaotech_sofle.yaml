@@ -95,7 +95,7 @@ layers:
   - HOME
   - \
   - ''
-  - LEFT
+  - {t: Ctl+LEFT ARROW, h: LEFT ALT}
   - {t: TAB, h: LEFT ALT}
   - RIGHT
   - {t: ▽, type: trans}
