@@ -96,7 +96,7 @@ layers:
   - \
   - ''
   - LEFT
-  - Alt+TAB
+  - {t: TAB, h: LEFT ALT}
   - RIGHT
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
