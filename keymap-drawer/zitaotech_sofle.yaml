@@ -56,7 +56,7 @@ layers:
   - ','
   - .
   - /
-  - {t: RSHIFT, h: sticky}
+  - {t: LEFT ALT, h: sticky}
   - LEFT GUI
   - LEFT ALT
   - RAISE
