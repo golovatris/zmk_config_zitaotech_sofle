@@ -41,7 +41,7 @@ layers:
   - L
   - ;
   - ENTER
-  - RAISE
+  - LEFT GUI
   - Z
   - X
   - C
@@ -57,7 +57,7 @@ layers:
   - .
   - /
   - {t: LEFT ALT, h: sticky}
-  - LEFT GUI
+  - RAISE
   - LEFT ALT
   - {t: LEFT SHIFT, h: sticky}
   - '&mod_key'
@@ -108,7 +108,7 @@ layers:
   - RIGHT
   - ''''
   - ENTER
-  - {t: LSHFT, h: sticky}
+  - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - Sft+Ctl+PAGE UP
   - Ctl+W
@@ -175,7 +175,7 @@ layers:
   - ''
   - ''
   - ''
-  - {type: held}
+  - ''
   - ''
   - ''
   - ''
@@ -191,7 +191,7 @@ layers:
   - ''
   - ''
   - ''
-  - '&bootloader'
+  - {t: '&bootloader', type: held}
   - ''
   - ''
   - ''
