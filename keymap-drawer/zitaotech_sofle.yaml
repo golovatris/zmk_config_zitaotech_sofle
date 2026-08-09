@@ -41,7 +41,7 @@ layers:
   - L
   - ;
   - ENTER
-  - LEFT GUI
+  - {t: LEFT SHIFT, h: sticky}
   - Z
   - X
   - C
@@ -59,7 +59,7 @@ layers:
   - {t: LEFT ALT, h: sticky}
   - RAISE
   - LEFT ALT
-  - {t: LEFT SHIFT, h: sticky}
+  - LEFT GUI
   - '&mod_key'
   - BACKSPACE
   - {t: ENTER, h: LCTRL}
