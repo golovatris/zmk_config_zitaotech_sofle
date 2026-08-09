@@ -49,8 +49,8 @@ layers:
   - B
   - PG DN
   - PG UP
-  - '&msc SCRL_DOWN'
-  - '&msc SCRL_UP'
+  - '&mkp LCLK'
+  - '&mkp RCLK'
   - N
   - M
   - ','
