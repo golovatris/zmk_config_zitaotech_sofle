@@ -41,7 +41,7 @@ layers:
   - L
   - ;
   - ENTER
-  - LSHFT
+  - {t: LSHFT, h: sticky}
   - Z
   - X
   - C
@@ -56,7 +56,7 @@ layers:
   - ','
   - .
   - /
-  - RSHIFT
+  - {t: RSHIFT, h: sticky}
   - LEFT GUI
   - LEFT ALT
   - RAISE
@@ -108,7 +108,7 @@ layers:
   - RIGHT
   - ''''
   - ENTER
-  - LSHFT
+  - {t: LSHFT, h: sticky}
   - {t: ▽, type: trans}
   - Sft+Ctl+PAGE UP
   - Ctl+W
