@@ -191,9 +191,8 @@ layers:
   - ''
   - ''
   - ''
-  - {t: '&bootloader', type: held}
-  - ''
-  - ''
+  - {type: held}
+  - '&bootloader'
   - ''
   - ''
   - ''
@@ -201,6 +200,7 @@ layers:
   - ''
   - ''
   - '&bootloader'
+  - ''
   Mouse:
   - ''
   - ''
