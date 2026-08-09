@@ -41,7 +41,7 @@ layers:
   - L
   - ;
   - ENTER
-  - {t: LSHFT, h: sticky}
+  - RAISE
   - Z
   - X
   - C
@@ -59,10 +59,10 @@ layers:
   - {t: LEFT ALT, h: sticky}
   - LEFT GUI
   - LEFT ALT
-  - RAISE
+  - {t: LEFT SHIFT, h: sticky}
   - '&mod_key'
   - BACKSPACE
-  - {t: SPACE, h: LCTRL}
+  - {t: ENTER, h: LCTRL}
   - {t: SPACE, h: LCTRL}
   - '-'
   - '='
@@ -175,7 +175,7 @@ layers:
   - ''
   - ''
   - ''
-  - ''
+  - {type: held}
   - ''
   - ''
   - ''
@@ -193,7 +193,7 @@ layers:
   - ''
   - '&bootloader'
   - ''
-  - {type: held}
+  - ''
   - ''
   - ''
   - ''
