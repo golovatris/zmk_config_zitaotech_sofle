@@ -80,6 +80,9 @@ static struct k_work_q tp_workq;
 #define SLOW_KEY_MULTIPLIER 0.5f
 static float scroll_residual_x = 0;
 static float scroll_residual_y = 0;
+/* ★ 鼠标模式的浮点余数累积：消除 (int) 截断造成的慢速死区 */
+static float mouse_residual_x = 0;
+static float mouse_residual_y = 0;
 /* ========= Watch Dog ========= */
 static uint32_t last_activity_time = 0;
 #define TRACKPOINT_WDT_TIMEOUT 200
@@ -381,8 +384,18 @@ static void trackpoint_work_cb(struct k_work *work) {
         float fx = dx * MOUSE_BASE_SPEED * tp_factor * exp_mult * slow_mult;
         float fy = dy * MOUSE_BASE_SPEED * tp_factor * exp_mult * slow_mult;
 
-        input_report_rel(dev, INPUT_REL_X, -(int)fx, false, K_NO_WAIT);
-        input_report_rel(dev, INPUT_REL_Y, -(int)fy, true, K_NO_WAIT);
+        /* ★ 累积浮点余数，慢速微动不再被截断丢失（与滚轮模式相同思路） */
+        mouse_residual_x += fx;
+        mouse_residual_y += fy;
+
+        int out_x = (int)mouse_residual_x;
+        int out_y = (int)mouse_residual_y;
+
+        mouse_residual_x -= out_x;
+        mouse_residual_y -= out_y;
+
+        input_report_rel(dev, INPUT_REL_X, -out_x, false, K_NO_WAIT);
+        input_report_rel(dev, INPUT_REL_Y, -out_y, true, K_NO_WAIT);
     }
 
     last_scroll_key_pressed = capslock;
