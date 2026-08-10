@@ -27,7 +27,7 @@ layers:
   - O
   - P
   - \
-  - Mouse
+  - {t: TAB, h: Mouse}
   - A
   - S
   - D
@@ -244,9 +244,9 @@ layers:
   - ''
   - ''
   - ''
+  - Ctl+Gui+LEFT
   - ''
-  - ''
-  - ''
+  - Ctl+Gui+RIGHT
   - ''
   - ''
   - ''
