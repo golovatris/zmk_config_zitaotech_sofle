@@ -119,7 +119,7 @@ layers:
   - '&bl BL_DEC'
   - '&bl BL_INC'
   - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
+  - INSERT
   - '['
   - ']'
   - _
