@@ -210,8 +210,8 @@
             bindings = <
 &kp ESC  &kp F1      &kp F2                  &kp F3          &kp F4                   &kp F5           &bt BT_CLR   &kp C_MUTE  &kp F6         &kp F7      &kp F8           &kp F9      &kp F10   &kp F11
 &kp TAB  &kp ESCAPE  &kp LC(PAGE_UP)         &kp LC(T)       &kp LC(PAGE_DOWN)        &out OUT_TOG     &kp PAGE_UP  &kp HOME    &kp UP         &kp END     &kp PRINTSCREEN  &kp F12
-&none    &none       &kp LA(LC(LEFT_ARROW))  &alt_latch TAB  &kp LA(LC(RIGHT_ARROW))  &trans           &mkp RCLK    &mkp RCLK   &kp PAGE_DOWN  &kp LEFT    &kp DOWN         &kp RIGHT   &kp SQT   &kp ENTER
-&trans   &trans      &kp LS(LC(PAGE_UP))     &kp LC(W)       &kp LS(LC(PAGE_DOWN))    &rgb_ug RGB_TOG  &trans       &trans      &bl BL_DEC     &bl BL_INC  &trans           &kp INSERT  &kp LBKT  &kp RBKT   &kp UNDER  &kp PLUS
+&none    &none       &kp LA(LC(LEFT_ARROW))  &alt_latch TAB  &kp LA(LC(RIGHT_ARROW))  &trans           &mkp RCLK    &mkp RCLK   &kp PAGE_DOWN  &kp LEFT    &kp DOWN         &kp RIGHT   &kp SQT   &trans
+&trans   &trans      &kp LS(LC(PAGE_UP))     &kp LC(W)       &kp LS(LC(PAGE_DOWN))    &rgb_ug RGB_TOG  &trans       &trans      &bl BL_DEC     &bl BL_INC  &trans           &kp INSERT  &kp LBKT  &kp RBKT  &kp UNDER  &kp PLUS
 &trans   &trans      &trans                  &trans          &trans                   &trans           &trans       &trans      &trans         &trans
             >;
 
