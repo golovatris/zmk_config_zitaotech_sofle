@@ -107,7 +107,7 @@ layers:
   - DOWN
   - RIGHT
   - ''''
-  - ENTER
+  - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - Sft+Ctl+PAGE UP
