@@ -61,8 +61,8 @@ layers:
   - LEFT ALT
   - LEFT GUI
   - '&mod_key'
-  - {t: LEFT SHIFT, h: sticky}
-  - {t: ENTER, h: LCTRL}
+  - {t: BACKSPACE, h: LEFT SHIFT}
+  - {t: ENTER, h: LEFT SHIFT}
   - {t: SPACE, h: LCTRL}
   - '-'
   - '='
