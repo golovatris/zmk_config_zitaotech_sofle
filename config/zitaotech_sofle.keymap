@@ -121,32 +121,26 @@
                 <&mo ALT_TAB_LAYER>;
         };
 
-        // Layout-independent "`" on Windows: hold Alt, tap numpad 9,6 (Alt+96 = backtick
-        // in the ASCII range of every code page). Requires NumLock ON.
+        // Layout-independent "`" on Windows: hold Alt, tap numpad 9,6 (Alt+96 = backtick,
+        // which is in the ASCII range of every code page). Requires NumLock ON.
+        // wait/tap >= 30ms per the ZMK docs, so HID reports aren't grouped at the BLE
+        // protocol level and processed out of order (e.g. Alt+9 swallowed as a menu chord).
         // Tap result: "``" with the caret between the two backticks.
 
         bt_pair: backtick_pair {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <30>;
-            tap-ms = <30>;
-            bindings =
-                <&macro_press>,
-                <&kp LALT>,
-                <&macro_tap>,
-                <&kp KP_N9>,
-                <&kp KP_N6>,
-                <&macro_release>,
-                <&kp LALT>,
-                <&macro_press>,
-                <&kp LALT>,
-                <&macro_tap>,
-                <&kp KP_N9>,
-                <&kp KP_N6>,
-                <&macro_release>,
-                <&kp LALT>,
-                <&macro_tap>,
-                <&kp LEFT>;
+            wait-ms = <40>;
+            tap-ms = <40>;
+            bindings
+                = <&macro_press   &kp LALT>
+                , <&macro_tap     &kp KP_N9 &kp KP_N6>
+                , <&macro_release &kp LALT>
+                , <&macro_press   &kp LALT>
+                , <&macro_tap     &kp KP_N9 &kp KP_N6>
+                , <&macro_release &kp LALT>
+                , <&macro_tap     &kp LEFT>
+                ;
         };
 
         // Markdown code fence: "```\n\n```\n", caret moved to the empty middle line.
@@ -154,58 +148,31 @@
         bt_fence: code_fence {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <30>;
-            tap-ms = <30>;
-            bindings =
-                <&macro_press>,
-                <&kp LALT>,
-                <&macro_tap>,
-                <&kp KP_N9>,
-                <&kp KP_N6>,
-                <&macro_release>,
-                <&kp LALT>,
-                <&macro_press>,
-                <&kp LALT>,
-                <&macro_tap>,
-                <&kp KP_N9>,
-                <&kp KP_N6>,
-                <&macro_release>,
-                <&kp LALT>,
-                <&macro_press>,
-                <&kp LALT>,
-                <&macro_tap>,
-                <&kp KP_N9>,
-                <&kp KP_N6>,
-                <&macro_release>,
-                <&kp LALT>,
-                <&macro_tap>,
-                <&kp ENTER>,
-                <&kp ENTER>,
-                <&macro_press>,
-                <&kp LALT>,
-                <&macro_tap>,
-                <&kp KP_N9>,
-                <&kp KP_N6>,
-                <&macro_release>,
-                <&kp LALT>,
-                <&macro_press>,
-                <&kp LALT>,
-                <&macro_tap>,
-                <&kp KP_N9>,
-                <&kp KP_N6>,
-                <&macro_release>,
-                <&kp LALT>,
-                <&macro_press>,
-                <&kp LALT>,
-                <&macro_tap>,
-                <&kp KP_N9>,
-                <&kp KP_N6>,
-                <&macro_release>,
-                <&kp LALT>,
-                <&macro_tap>,
-                <&kp ENTER>,
-                <&kp UP>,
-                <&kp UP>;
+            wait-ms = <40>;
+            tap-ms = <40>;
+            bindings
+                = <&macro_press   &kp LALT>
+                , <&macro_tap     &kp KP_N9 &kp KP_N6>
+                , <&macro_release &kp LALT>
+                , <&macro_press   &kp LALT>
+                , <&macro_tap     &kp KP_N9 &kp KP_N6>
+                , <&macro_release &kp LALT>
+                , <&macro_press   &kp LALT>
+                , <&macro_tap     &kp KP_N9 &kp KP_N6>
+                , <&macro_release &kp LALT>
+                , <&macro_tap     &kp ENTER &kp ENTER>
+                , <&macro_press   &kp LALT>
+                , <&macro_tap     &kp KP_N9 &kp KP_N6>
+                , <&macro_release &kp LALT>
+                , <&macro_press   &kp LALT>
+                , <&macro_tap     &kp KP_N9 &kp KP_N6>
+                , <&macro_release &kp LALT>
+                , <&macro_press   &kp LALT>
+                , <&macro_tap     &kp KP_N9 &kp KP_N6>
+                , <&macro_release &kp LALT>
+                , <&macro_tap     &kp ENTER>
+                , <&macro_tap     &kp UP &kp UP>
+                ;
         };
     };
 };
