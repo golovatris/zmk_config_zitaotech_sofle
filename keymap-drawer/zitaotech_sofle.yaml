@@ -131,8 +131,8 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
+  - Ctl+LEFT SHIFT
+  - Alt+LEFT SHIFT
   - {t: ▽, type: trans}
   RAISE:
   - {t: BT, h: '0'}
