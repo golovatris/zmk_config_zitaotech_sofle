@@ -15,7 +15,7 @@ layers:
   - '9'
   - '0'
   - BACKSPACE
-  - TAB
+  - '`'
   - Q
   - W
   - E
@@ -82,7 +82,7 @@ layers:
   - F9
   - F10
   - F11
-  - TAB
+  - '&td_bt'
   - ESCAPE
   - Ctl+PAGE UP
   - Ctl+T
