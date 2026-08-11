@@ -40,7 +40,7 @@ layers:
   - K
   - L
   - ;
-  - LEFT GUI
+  - BACKSPACE
   - {t: LEFT SHIFT, h: sticky}
   - Z
   - X
@@ -56,12 +56,12 @@ layers:
   - ','
   - .
   - /
-  - {t: LEFT ALT, h: sticky}
+  - LEFT GUI
   - RAISE
   - LEFT ALT
   - LEFT GUI
   - '&mod_key'
-  - BACKSPACE
+  - {t: LEFT SHIFT, h: sticky}
   - {t: ENTER, h: LCTRL}
   - {t: SPACE, h: LCTRL}
   - '-'
@@ -107,7 +107,7 @@ layers:
   - DOWN
   - RIGHT
   - ''''
-  - {t: ▽, type: trans}
+  - DELETE
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - Sft+Ctl+PAGE UP
@@ -123,7 +123,7 @@ layers:
   - '['
   - ']'
   - _
-  - +
+  - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
