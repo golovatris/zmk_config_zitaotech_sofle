@@ -63,7 +63,7 @@ layers:
   - '&mod_key'
   - {t: BACKSPACE, h: LEFT SHIFT}
   - {t: ENTER, h: LEFT SHIFT}
-  - '&mt_lc SPACE'
+  - {t: SPACE, h: '&lctrl_ns'}
   - '-'
   - '='
   - '`'
