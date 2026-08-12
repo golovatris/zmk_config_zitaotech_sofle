@@ -314,10 +314,11 @@
             bindings = <&mo &kp>;
         };
 
-        /* Like &mt LCTRL <key>, but hold also enables NOSCROLL (mute LOWER scroll). */
+        /* Like &mt LCTRL <key>, but hold also enables NOSCROLL (mute LOWER scroll).
+         * Hold binding takes 0 params; pass a dummy 0 — e.g. &mt_lc 0 SPACE. */
         mt_lc: mt_lctrl_noscroll {
             compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <1>;
+            #binding-cells = <2>;
             flavor = "hold-preferred";
             tapping-term-ms = <200>;
             bindings = <&lctrl_ns &kp>;
@@ -342,7 +343,7 @@
 &kp GRAVE       &kp Q         &kp W         &kp E     &kp R                     &kp T                 &kp Y            &kp U       &kp I      &kp O      &kp P   &kp BSLH
 &mlt 3 TAB      &kp A         &kp S         &kp D     &kp F                     &kp G                 &mkp LCLK        &mkp LCLK   &kp H      &kp J      &kp K   &kp L     &kp SEMI   &kp BACKSPACE
 &sk LEFT_SHIFT  &kp Z         &kp X         &kp C     &kp V                     &kp B                 &kp PG_DN        &kp PG_UP   &mkp LCLK  &mkp RCLK  &kp N   &kp M     &kp COMMA  &kp DOT        &kp FSLH  &kp LEFT_GUI
-&mo 2           &kp LEFT_ALT  &kp LEFT_GUI  &mod_key  &mt LEFT_SHIFT BACKSPACE  &mt LEFT_SHIFT ENTER  &mt_lc SPACE  &kp MINUS   &kp EQUAL  &kp GRAVE
+&mo 2           &kp LEFT_ALT  &kp LEFT_GUI  &mod_key  &mt LEFT_SHIFT BACKSPACE  &mt LEFT_SHIFT ENTER  &mt_lc 0 SPACE  &kp MINUS   &kp EQUAL  &kp GRAVE
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp LEFT RIGHT>;
