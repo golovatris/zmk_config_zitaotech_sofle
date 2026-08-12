@@ -52,7 +52,9 @@
 /* Always scroll: left BB trackball is a scroll wheel, not a pointer. */
 &bbtrackball_listener {
     status = "okay";
-    input-processors = <&zip_xy_to_scroll_mapper>;
+    input-processors =
+        <&zip_y_scaler (-1) 1>,
+        <&zip_xy_to_scroll_mapper>;
 };
 
 &pinctrl {
