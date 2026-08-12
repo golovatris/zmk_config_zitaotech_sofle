@@ -5,6 +5,7 @@
 *
 */
 #include <zephyr/dt-bindings/input/input-event-codes.h>
+#include <input/processors.dtsi>
 
 / {
     chosen {
@@ -48,13 +49,10 @@
 };
 
 
+/* Always scroll: left BB trackball is a scroll wheel, not a pointer. */
 &bbtrackball_listener {
     status = "okay";
-    input-processors = <&zip_temp_layer 3 600>,
-    <&ip_behaviors0>,
-    <&ip_behaviors1>,
-    <&ip_behaviors2>,
-    <&ip_behaviors3>;
+    input-processors = <&zip_xy_to_scroll_mapper>;
 };
 
 &pinctrl {
@@ -71,4 +69,3 @@
         };
     };
 };
-
