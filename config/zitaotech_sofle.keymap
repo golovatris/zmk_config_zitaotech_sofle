@@ -29,6 +29,7 @@
  *   UC_HOST_LINUX        IBus/GTK Ctrl+Shift+U. Hex digits only; works on RU and EN.
  *   UC_HOST_MACOS        System Settings → Keyboard → Input Sources → Unicode Hex Input.
  */
+
 #define UC_HOST_WIN_COMPOSE 1
 #define UC_HOST_WIN_ALT 2
 #define UC_HOST_LINUX 3
@@ -37,28 +38,39 @@
 
 /* Per-key delay for unicode macros. 40ms made them sluggish; 5ms matches
  * zmk-unicode defaults. Raise these if characters come out mangled over BLE. */
+
 #define UC_MACRO_TAP_MS 5
 #define UC_MACRO_WAIT_MS 5
 
 #if UC_HOST == UC_HOST_WIN_COMPOSE
+
 #define UC_GRAVE_KEYS &kp RALT &kp U &kp N6 &kp N0 &kp RET
+
 #elif UC_HOST == UC_HOST_LINUX
+
 #define UC_GRAVE_KEYS &kp LC(LS(U)) &kp N6 &kp N0 &kp SPACE
+
 #endif
 
 #if UC_HOST == UC_HOST_WIN_ALT
+
 #define UC_GRAVE_BINDINGS \
     <&macro_press &kp LALT>, \
     <&macro_tap &kp KP_N0 &kp KP_N9 &kp KP_N6>, \
     <&macro_release &kp LALT>
+
 #elif UC_HOST == UC_HOST_MACOS
+
 #define UC_GRAVE_BINDINGS \
     <&macro_press &kp LALT>, \
     <&macro_tap &kp N0 &kp N0 &kp N6 &kp N0>, \
     <&macro_release &kp LALT>
-#endif
 
-/ {
+#
+
+endif {
+    /
+
     input_processors {
         zip_temp_layer: zip_temp_layer {
             compatible = "zmk,input-processor-temp-layer";
@@ -208,15 +220,7 @@
             #binding-cells = <0>;
             wait-ms = <UC_MACRO_WAIT_MS>;
             tap-ms = <UC_MACRO_TAP_MS>;
-            bindings =
-#if UC_HOST == UC_HOST_WIN_COMPOSE || UC_HOST == UC_HOST_LINUX
-                <&macro_tap UC_GRAVE_KEYS UC_GRAVE_KEYS &kp LEFT>
-#else
-                UC_GRAVE_BINDINGS,
-                UC_GRAVE_BINDINGS,
-                <&macro_tap &kp LEFT>
-#endif
-                ;
+            bindings = <&macro_tap>, <&kp LEFT>;
         };
 
         // Double tap: "```\n\n```\n", caret moved to the empty middle line.
@@ -227,24 +231,12 @@
             wait-ms = <UC_MACRO_WAIT_MS>;
             tap-ms = <UC_MACRO_TAP_MS>;
             bindings =
-#if UC_HOST == UC_HOST_WIN_COMPOSE || UC_HOST == UC_HOST_LINUX
-                <&macro_tap UC_GRAVE_KEYS UC_GRAVE_KEYS UC_GRAVE_KEYS
-                            &kp ENTER &kp ENTER
-                            UC_GRAVE_KEYS UC_GRAVE_KEYS UC_GRAVE_KEYS
-                            &kp ENTER &kp UP &kp UP>,
-                <&macro_release &kp RET &kp ENTER>
-#else
-                UC_GRAVE_BINDINGS,
-                UC_GRAVE_BINDINGS,
-                UC_GRAVE_BINDINGS,
-                <&macro_tap &kp ENTER &kp ENTER>,
-                UC_GRAVE_BINDINGS,
-                UC_GRAVE_BINDINGS,
-                UC_GRAVE_BINDINGS,
-                <&macro_tap &kp ENTER &kp UP &kp UP>,
-                <&macro_release &kp RET &kp ENTER>
-#endif
-                ;
+                <&macro_tap>,
+                <&kp ENTER &kp ENTER>,
+                <&macro_tap>,
+                <&kp ENTER &kp UP &kp UP>,
+                <&macro_release>,
+                <&kp RET &kp ENTER>;
         };
     };
 };
@@ -356,11 +348,11 @@
         default_layer {
             display-name = "QWERTY";
             bindings = <
-&kp ESC         &kp N1        &kp N2        &kp N3    &kp N4                    &kp N5                &kp C_MUTE      &kp C_MUTE  &kp N6     &kp N7     &kp N8  &kp N9    &kp N0     &kp BACKSPACE
-&kp GRAVE       &kp Q         &kp W         &kp E     &kp R                     &kp T                 &kp Y           &kp U       &kp I      &kp O      &kp P   &kp BSLH
-&mlt 3 TAB      &kp A         &kp S         &kp D     &kp F                     &kp G                 &mkp LCLK       &mkp LCLK   &kp H      &kp J      &kp K   &kp L     &kp SEMI   &kp BACKSPACE
-&sk LEFT_SHIFT  &kp Z         &kp X         &kp C     &kp V                     &kp B                 &kp PG_DN       &kp PG_UP   &mkp LCLK  &mkp RCLK  &kp N   &kp M     &kp COMMA  &kp DOT        &kp FSLH  &kp LEFT_GUI
-&mo 2           &kp LEFT_ALT  &kp LEFT_GUI  &mod_key  &mt LEFT_SHIFT BACKSPACE  &mt LEFT_SHIFT ENTER  &mt_lc 0 SPACE  &kp MINUS   &kp EQUAL  &kp GRAVE
+&kp ESC     &kp N1        &kp N2    &kp N3          &kp N4         &kp N5                &kp C_MUTE      &kp C_MUTE  &kp N6     &kp N7     &kp N8  &kp N9    &kp N0     &kp BACKSPACE
+&kp GRAVE   &kp Q         &kp W     &kp E           &kp R          &kp T                 &kp Y           &kp U       &kp I      &kp O      &kp P   &kp BSLH
+&mlt 3 TAB  &kp A         &kp S     &kp D           &kp F          &kp G                 &mkp LCLK       &mkp LCLK   &kp H      &kp J      &kp K   &kp L     &kp SEMI   &kp LEFT_GUI
+&mod_key    &kp Z         &kp X     &kp C           &kp V          &kp B                 &kp PG_DN       &kp PG_UP   &mkp LCLK  &mkp RCLK  &kp N   &kp M     &kp COMMA  &kp DOT        &kp FSLH  &mod_key
+&mo 2       &kp LEFT_ALT  &mod_key  &sk LEFT_SHIFT  &kp BACKSPACE  &mt LEFT_SHIFT ENTER  &mt_lc 0 SPACE  &kp MINUS   &kp EQUAL  &kp GRAVE
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp LEFT RIGHT>;
