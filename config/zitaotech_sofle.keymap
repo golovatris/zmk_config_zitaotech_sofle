@@ -20,57 +20,20 @@
 #define NOSCROLL 5
 #define BOT bootloader
 
-/* Layout-independent "`" (U+0060). `&kp GRAVE` follows the OS layout (ё on Russian).
+/* Layout-independent "`" (U+0060) via WinCompose: RAlt, u, 60, Enter.
+ * Sequences are fully inlined in bt_pair / bt_fence — no #if/#endif. ZMK Studio
+ * rewrites the keymap and turns preprocessor conditionals into a build error.
  *
- *   UC_HOST_WIN_COMPOSE  Windows USB/BLE. Install WinCompose, then reboot or start it:
- *                        https://github.com/ell1010/wincompose/releases
- *                        Use this fork if you switch EN/RU (upstream breaks on non-US layouts).
- *   UC_HOST_WIN_ALT      Windows Alt+096. No extra app; needs USB (not BLE) and NumLock ON.
- *   UC_HOST_LINUX        IBus/GTK Ctrl+Shift+U. Hex digits only; works on RU and EN.
- *   UC_HOST_MACOS        System Settings → Keyboard → Input Sources → Unicode Hex Input.
+ * Other hosts (replace each grave sequence in those macros):
+ *   Linux:  &kp LC(LS(U)) &kp N6 &kp N0 &kp SPACE
+ *   macOS:  hold LALT, tap N0 N0 N6 N0, release LALT  (Unicode Hex Input)
+ *   WinAlt: hold LALT, tap KP_N0 KP_N9 KP_N6, release LALT  (USB + NumLock)
  */
-
-#define UC_HOST_WIN_COMPOSE 1
-#define UC_HOST_WIN_ALT 2
-#define UC_HOST_LINUX 3
-#define UC_HOST_MACOS 4
-#define UC_HOST UC_HOST_WIN_COMPOSE
-
-/* Per-key delay for unicode macros. 40ms made them sluggish; 5ms matches
- * zmk-unicode defaults. Raise these if characters come out mangled over BLE. */
 
 #define UC_MACRO_TAP_MS 5
 #define UC_MACRO_WAIT_MS 5
 
-#if UC_HOST == UC_HOST_WIN_COMPOSE
-
-#define UC_GRAVE_KEYS &kp RALT &kp U &kp N6 &kp N0 &kp RET
-
-#elif UC_HOST == UC_HOST_LINUX
-
-#define UC_GRAVE_KEYS &kp LC(LS(U)) &kp N6 &kp N0 &kp SPACE
-
-#endif
-
-#if UC_HOST == UC_HOST_WIN_ALT
-
-#define UC_GRAVE_BINDINGS \
-    <&macro_press &kp LALT>, \
-    <&macro_tap &kp KP_N0 &kp KP_N9 &kp KP_N6>, \
-    <&macro_release &kp LALT>
-
-#elif UC_HOST == UC_HOST_MACOS
-
-#define UC_GRAVE_BINDINGS \
-    <&macro_press &kp LALT>, \
-    <&macro_tap &kp N0 &kp N0 &kp N6 &kp N0>, \
-    <&macro_release &kp LALT>
-
-#
-
-endif {
-    /
-
+/ {
     input_processors {
         zip_temp_layer: zip_temp_layer {
             compatible = "zmk,input-processor-temp-layer";
@@ -220,7 +183,10 @@ endif {
             #binding-cells = <0>;
             wait-ms = <UC_MACRO_WAIT_MS>;
             tap-ms = <UC_MACRO_TAP_MS>;
-            bindings = <&macro_tap>, <&kp LEFT>;
+            bindings =
+                <&macro_tap &kp RALT &kp U &kp N6 &kp N0 &kp RET
+                            &kp RALT &kp U &kp N6 &kp N0 &kp RET
+                            &kp LEFT>;
         };
 
         // Double tap: "```\n\n```\n", caret moved to the empty middle line.
@@ -231,12 +197,15 @@ endif {
             wait-ms = <UC_MACRO_WAIT_MS>;
             tap-ms = <UC_MACRO_TAP_MS>;
             bindings =
-                <&macro_tap>,
-                <&kp ENTER &kp ENTER>,
-                <&macro_tap>,
-                <&kp ENTER &kp UP &kp UP>,
-                <&macro_release>,
-                <&kp RET &kp ENTER>;
+                <&macro_tap &kp RALT &kp U &kp N6 &kp N0 &kp RET
+                            &kp RALT &kp U &kp N6 &kp N0 &kp RET
+                            &kp RALT &kp U &kp N6 &kp N0 &kp RET
+                            &kp ENTER &kp ENTER
+                            &kp RALT &kp U &kp N6 &kp N0 &kp RET
+                            &kp RALT &kp U &kp N6 &kp N0 &kp RET
+                            &kp RALT &kp U &kp N6 &kp N0 &kp RET
+                            &kp ENTER &kp UP &kp UP>,
+                <&macro_release &kp RET &kp ENTER>;
         };
     };
 };
