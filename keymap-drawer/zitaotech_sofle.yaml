@@ -87,7 +87,7 @@ layers:
   - Ctl+PAGE UP
   - Ctl+T
   - Ctl+PAGE DOWN
-  - OUT TOG
+  - ''
   - PAGE UP
   - HOME
   - UP
@@ -113,7 +113,7 @@ layers:
   - Sft+Ctl+PAGE UP
   - Ctl+W
   - Sft+Ctl+PAGE DOWN
-  - RGB TOG
+  - ''
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - '&bl BL_DEC'
