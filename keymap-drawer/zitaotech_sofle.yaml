@@ -94,7 +94,7 @@ layers:
   - END
   - PRINTSCREEN
   - F12
-  - ''
+  - TAB
   - ''
   - Alt+Ctl+LEFT ARROW
   - '&alt_latch TAB'
