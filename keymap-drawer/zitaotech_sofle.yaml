@@ -59,9 +59,9 @@ layers:
   - '&mod_key'
   - RAISE
   - LEFT ALT
+  - BACKSPACE
   - '&mod_key'
   - {t: LEFT SHIFT, h: sticky}
-  - BACKSPACE
   - {t: ENTER, h: LEFT SHIFT}
   - {t: SPACE, h: '&lctrl_ns'}
   - '-'
@@ -99,7 +99,7 @@ layers:
   - Alt+Ctl+LEFT ARROW
   - '&alt_latch TAB'
   - Alt+Ctl+RIGHT ARROW
-  - {t: ▽, type: trans}
+  - LEFT SHIFT
   - '&mkp RCLK'
   - '&mkp RCLK'
   - PAGE DOWN
