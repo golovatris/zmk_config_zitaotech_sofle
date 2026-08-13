@@ -20,6 +20,39 @@
 #define NOSCROLL 5
 #define BOT bootloader
 
+/* Layout-independent "`" (U+0060). `&kp GRAVE` follows the OS layout (ё on Russian).
+ *
+ *   UC_HOST_WIN_COMPOSE  Windows USB/BLE. Install WinCompose, then reboot or start it:
+ *                        https://github.com/ell1010/wincompose/releases
+ *                        Use this fork if you switch EN/RU (upstream breaks on non-US layouts).
+ *   UC_HOST_WIN_ALT      Windows Alt+096. No extra app; needs USB (not BLE) and NumLock ON.
+ *   UC_HOST_LINUX        IBus/GTK Ctrl+Shift+U. Hex digits only; works on RU and EN.
+ *   UC_HOST_MACOS        System Settings → Keyboard → Input Sources → Unicode Hex Input.
+ */
+#define UC_HOST_WIN_COMPOSE 1
+#define UC_HOST_WIN_ALT 2
+#define UC_HOST_LINUX 3
+#define UC_HOST_MACOS 4
+#define UC_HOST UC_HOST_WIN_COMPOSE
+
+#if UC_HOST == UC_HOST_WIN_COMPOSE
+#define UC_GRAVE_KEYS &kp RALT &kp U &kp N6 &kp N0 &kp RET
+#elif UC_HOST == UC_HOST_LINUX
+#define UC_GRAVE_KEYS &kp LC(LS(U)) &kp N6 &kp N0 &kp SPACE
+#endif
+
+#if UC_HOST == UC_HOST_WIN_ALT
+#define UC_GRAVE_BINDINGS \
+    <&macro_press &kp LALT>, \
+    <&macro_tap &kp KP_N0 &kp KP_N9 &kp KP_N6>, \
+    <&macro_release &kp LALT>
+#elif UC_HOST == UC_HOST_MACOS
+#define UC_GRAVE_BINDINGS \
+    <&macro_press &kp LALT>, \
+    <&macro_tap &kp N0 &kp N0 &kp N6 &kp N0>, \
+    <&macro_release &kp LALT>
+#endif
+
 / {
     input_processors {
         zip_temp_layer: zip_temp_layer {
@@ -161,11 +194,9 @@
                 <&mo ALT_TAB_LAYER>;
         };
 
-        // Layout-independent "`" on Windows: hold Alt, tap numpad 9,6 (Alt+96 = backtick,
-        // which is in the ASCII range of every code page). Requires NumLock ON.
-        // wait/tap >= 30ms per the ZMK docs, so HID reports aren't grouped at the BLE
-        // protocol level and processed out of order (e.g. Alt+9 swallowed as a menu chord).
-        // Tap result: "``" with the caret between the two backticks.
+        // Single tap: "``" with the caret between the backticks.
+        // Sequences are fully inlined (not nested `&uc`) so later keys like LEFT
+        // are not queued ahead of the unicode HID events.
 
         bt_pair: backtick_pair {
             compatible = "zmk,behavior-macro";
@@ -173,31 +204,17 @@
             wait-ms = <40>;
             tap-ms = <40>;
             bindings =
-                <&macro_press>,
-                <&kp LALT>,
-                <&macro_wait_time 120>,
-                <&macro_tap>,
-                <&kp KP_N9>,
-                <&macro_wait_time 40>,
-                <&macro_tap>,
-                <&kp KP_N6>,
-                <&macro_release>,
-                <&kp LALT>,
-                <&macro_press>,
-                <&kp LALT>,
-                <&macro_wait_time 120>,
-                <&macro_tap>,
-                <&kp KP_N9>,
-                <&macro_wait_time 40>,
-                <&macro_tap>,
-                <&kp KP_N6>,
-                <&macro_release>,
-                <&kp LALT>,
-                <&macro_tap>,
-                <&kp LEFT>;
+#if UC_HOST == UC_HOST_WIN_COMPOSE || UC_HOST == UC_HOST_LINUX
+                <&macro_tap UC_GRAVE_KEYS UC_GRAVE_KEYS &kp LEFT>
+#else
+                UC_GRAVE_BINDINGS,
+                UC_GRAVE_BINDINGS,
+                <&macro_tap &kp LEFT>
+#endif
+                ;
         };
 
-        // Markdown code fence: "```\n\n```\n", caret moved to the empty middle line.
+        // Double tap: "```\n\n```\n", caret moved to the empty middle line.
 
         bt_fence: code_fence {
             compatible = "zmk,behavior-macro";
@@ -205,72 +222,22 @@
             wait-ms = <40>;
             tap-ms = <40>;
             bindings =
-                <&macro_press>,
-                <&kp LALT>,
-                <&macro_wait_time 120>,
-                <&macro_tap>,
-                <&kp KP_N9>,
-                <&macro_wait_time 40>,
-                <&macro_tap>,
-                <&kp KP_N6>,
-                <&macro_release>,
-                <&kp LALT>,
-                <&macro_press>,
-                <&kp LALT>,
-                <&macro_wait_time 120>,
-                <&macro_tap>,
-                <&kp KP_N9>,
-                <&macro_wait_time 40>,
-                <&macro_tap>,
-                <&kp KP_N6>,
-                <&macro_release>,
-                <&kp LALT>,
-                <&macro_press>,
-                <&kp LALT>,
-                <&macro_wait_time 120>,
-                <&macro_tap>,
-                <&kp KP_N9>,
-                <&macro_wait_time 40>,
-                <&macro_tap>,
-                <&kp KP_N6>,
-                <&macro_release>,
-                <&kp LALT>,
-                <&macro_tap>,
-                <&kp ENTER &kp ENTER>,
-                <&macro_press>,
-                <&kp LALT>,
-                <&macro_wait_time 120>,
-                <&macro_tap>,
-                <&kp KP_N9>,
-                <&macro_wait_time 40>,
-                <&macro_tap>,
-                <&kp KP_N6>,
-                <&macro_release>,
-                <&kp LALT>,
-                <&macro_press>,
-                <&kp LALT>,
-                <&macro_wait_time 120>,
-                <&macro_tap>,
-                <&kp KP_N9>,
-                <&macro_wait_time 40>,
-                <&macro_tap>,
-                <&kp KP_N6>,
-                <&macro_release>,
-                <&kp LALT>,
-                <&macro_press>,
-                <&kp LALT>,
-                <&macro_wait_time 120>,
-                <&macro_tap>,
-                <&kp KP_N9>,
-                <&macro_wait_time 40>,
-                <&macro_tap>,
-                <&kp KP_N6>,
-                <&macro_release>,
-                <&kp LALT>,
-                <&macro_tap>,
-                <&kp ENTER>,
-                <&macro_tap>,
-                <&kp UP &kp UP>;
+#if UC_HOST == UC_HOST_WIN_COMPOSE || UC_HOST == UC_HOST_LINUX
+                <&macro_tap UC_GRAVE_KEYS UC_GRAVE_KEYS UC_GRAVE_KEYS
+                            &kp ENTER &kp ENTER
+                            UC_GRAVE_KEYS UC_GRAVE_KEYS UC_GRAVE_KEYS
+                            &kp ENTER &kp UP &kp UP>
+#else
+                UC_GRAVE_BINDINGS,
+                UC_GRAVE_BINDINGS,
+                UC_GRAVE_BINDINGS,
+                <&macro_tap &kp ENTER &kp ENTER>,
+                UC_GRAVE_BINDINGS,
+                UC_GRAVE_BINDINGS,
+                UC_GRAVE_BINDINGS,
+                <&macro_tap &kp ENTER &kp UP &kp UP>
+#endif
+                ;
         };
     };
 };
