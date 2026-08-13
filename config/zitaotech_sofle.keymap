@@ -311,11 +311,11 @@
         default_layer {
             display-name = "QWERTY";
             bindings = <
-&kp ESC     &kp N1        &kp N2    &kp N3          &kp N4         &kp N5                &kp C_MUTE      &kp C_MUTE  &kp N6     &kp N7     &kp N8  &kp N9    &kp N0     &kp BACKSPACE
-&kp GRAVE   &kp Q         &kp W     &kp E           &kp R          &kp T                 &kp Y           &kp U       &kp I      &kp O      &kp P   &kp BSLH
-&mlt 3 TAB  &kp A         &kp S     &kp D           &kp F          &kp G                 &mkp LCLK       &mkp LCLK   &kp H      &kp J      &kp K   &kp L     &kp SEMI   &kp LEFT_GUI
-&mod_key    &kp Z         &kp X     &kp C           &kp V          &kp B                 &kp PG_DN       &kp PG_UP   &mkp LCLK  &mkp RCLK  &kp N   &kp M     &kp COMMA  &kp DOT        &kp FSLH  &mod_key
-&mo 2       &kp LEFT_ALT  &mod_key  &sk LEFT_SHIFT  &kp BACKSPACE  &mt LEFT_SHIFT ENTER  &mt_lc 0 SPACE  &kp MINUS   &kp EQUAL  &kp GRAVE
+&kp ESC     &kp N1        &kp N2         &kp N3    &kp N4          &kp N5                &kp C_MUTE      &kp C_MUTE  &kp N6     &kp N7     &kp N8  &kp N9    &kp N0     &kp BACKSPACE
+&kp GRAVE   &kp Q         &kp W          &kp E     &kp R           &kp T                 &kp Y           &kp U       &kp I      &kp O      &kp P   &kp BSLH
+&mlt 3 TAB  &kp A         &kp S          &kp D     &kp F           &kp G                 &mkp LCLK       &mkp LCLK   &kp H      &kp J      &kp K   &kp L     &kp SEMI   &kp LEFT_GUI
+&mod_key    &kp Z         &kp X          &kp C     &kp V           &kp B                 &kp PG_DN       &kp PG_UP   &mkp LCLK  &mkp RCLK  &kp N   &kp M     &kp COMMA  &kp DOT        &kp FSLH  &mod_key
+&mo 2       &kp LEFT_ALT  &kp BACKSPACE  &mod_key  &sk LEFT_SHIFT  &mt LEFT_SHIFT ENTER  &mt_lc 0 SPACE  &kp MINUS   &kp EQUAL  &kp GRAVE
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp LEFT RIGHT>;
@@ -326,7 +326,7 @@
             bindings = <
 &kp ESC  &kp F1      &kp F2                  &kp F3          &kp F4                   &kp F5           &bt BT_CLR   &kp C_MUTE  &kp F6              &kp F7      &kp F8           &kp F9      &kp F10   &kp F11
 &td_bt   &kp ESCAPE  &kp LC(PAGE_UP)         &kp LC(T)       &kp LC(PAGE_DOWN)        &out OUT_TOG     &kp PAGE_UP  &kp HOME    &kp UP              &kp END     &kp PRINTSCREEN  &kp F12
-&kp TAB  &none       &kp LA(LC(LEFT_ARROW))  &alt_latch TAB  &kp LA(LC(RIGHT_ARROW))  &trans           &mkp RCLK    &mkp RCLK   &kp PAGE_DOWN       &kp LEFT    &kp DOWN         &kp RIGHT   &kp SQT   &kp DELETE
+&kp TAB  &none       &kp LA(LC(LEFT_ARROW))  &alt_latch TAB  &kp LA(LC(RIGHT_ARROW))  &kp LEFT_SHIFT   &mkp RCLK    &mkp RCLK   &kp PAGE_DOWN       &kp LEFT    &kp DOWN         &kp RIGHT   &kp SQT   &kp DELETE
 &trans   &trans      &kp LS(LC(PAGE_UP))     &kp LC(W)       &kp LS(LC(PAGE_DOWN))    &rgb_ug RGB_TOG  &trans       &trans      &bl BL_DEC          &bl BL_INC  &trans           &kp INSERT  &kp LBKT  &kp RBKT    &kp UNDER  &trans
 &trans   &trans      &trans                  &trans          &trans                   &kp LEFT_SHIFT   &trans       &lcs_ns     &kp LA(LEFT_SHIFT)  &trans
             >;
