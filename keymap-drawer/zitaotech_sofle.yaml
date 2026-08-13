@@ -40,8 +40,8 @@ layers:
   - K
   - L
   - ;
-  - BACKSPACE
-  - {t: LEFT SHIFT, h: sticky}
+  - LEFT GUI
+  - '&mod_key'
   - Z
   - X
   - C
@@ -56,12 +56,12 @@ layers:
   - ','
   - .
   - /
-  - LEFT GUI
+  - '&mod_key'
   - RAISE
   - LEFT ALT
-  - LEFT GUI
   - '&mod_key'
-  - {t: BACKSPACE, h: LEFT SHIFT}
+  - {t: LEFT SHIFT, h: sticky}
+  - BACKSPACE
   - {t: ENTER, h: LEFT SHIFT}
   - {t: SPACE, h: '&lctrl_ns'}
   - '-'
