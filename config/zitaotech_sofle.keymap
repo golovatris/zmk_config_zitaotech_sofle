@@ -20,14 +20,17 @@
 #define NOSCROLL 5
 #define BOT bootloader
 
-/* Layout-independent "`" (U+0060) via WinCompose: RAlt, u, 60, Enter.
- * Sequences are fully inlined in bt_pair / bt_fence — no #if/#endif. ZMK Studio
- * rewrites the keymap and turns preprocessor conditionals into a build error.
+/* Layout-independent "`" via WinCompose: F13, 6, 0.
+ * Do not use RAlt+U — on Russian RAlt is AltGr and U types г, so you get "г60".
+ * Digits 6 and 0 are the same on EN and RU. Fence newlines are Shift+Enter
+ * so chat/forms are not submitted.
  *
- * Other hosts (replace each grave sequence in those macros):
- *   Linux:  &kp LC(LS(U)) &kp N6 &kp N0 &kp SPACE
- *   macOS:  hold LALT, tap N0 N0 N6 N0, release LALT  (Unicode Hex Input)
- *   WinAlt: hold LALT, tap KP_N0 KP_N9 KP_N6, release LALT  (USB + NumLock)
+ * WinCompose (once):
+ *   1. Compose key = F13  (Options → Compose key)
+ *   2. Add user sequence  Compose, 6, 0  →  `
+ *      File %USERPROFILE%\.XCompose :
+ *        include "%COMPOSE%"
+ *        <Multi_key> <6> <0> : "`"
  */
 
 #define UC_MACRO_TAP_MS 5
@@ -185,10 +188,10 @@
             tap-ms = <UC_MACRO_TAP_MS>;
             bindings =
                 <&macro_tap>,
-                <&kp RALT &kp U &kp N6 &kp N0 &kp RET &kp RALT &kp U &kp N6 &kp N0 &kp RET &kp LEFT>;
+                <&kp F13 &kp N6 &kp N0 &kp F13 &kp N6 &kp N0 &kp LEFT>;
         };
 
-        // Double tap: "```\n\n```\n", caret moved to the empty middle line.
+        // Double tap: fence with Shift+Enter newlines, caret on the empty middle line.
 
         bt_fence: code_fence {
             compatible = "zmk,behavior-macro";
@@ -197,9 +200,14 @@
             tap-ms = <UC_MACRO_TAP_MS>;
             bindings =
                 <&macro_tap>,
-                <&kp RALT &kp U &kp N6 &kp N0 &kp RET &kp RALT &kp U &kp N6 &kp N0 &kp RET &kp RALT &kp U &kp N6 &kp N0 &kp RET &kp ENTER &kp ENTER &kp RALT &kp U &kp N6 &kp N0 &kp RET &kp RALT &kp U &kp N6 &kp N0 &kp RET &kp RALT &kp U &kp N6 &kp N0 &kp RET &kp ENTER &kp UP &kp UP>,
-                <&macro_release>,
-                <&kp RET &kp ENTER>;
+                <&kp F13 &kp N6 &kp N0
+                 &kp F13 &kp N6 &kp N0
+                 &kp F13 &kp N6 &kp N0
+                 &kp LS(ENTER) &kp LS(ENTER)
+                 &kp F13 &kp N6 &kp N0
+                 &kp F13 &kp N6 &kp N0
+                 &kp F13 &kp N6 &kp N0
+                 &kp LS(ENTER) &kp UP &kp UP>;
         };
     };
 };
