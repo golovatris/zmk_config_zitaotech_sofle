@@ -20,17 +20,15 @@
 #define NOSCROLL 5
 #define BOT bootloader
 
-/* Layout-independent "`" via WinCompose: F13, 6, 0.
- * Do not use RAlt+U — on Russian RAlt is AltGr and U types г, so you get "г60".
- * Digits 6 and 0 are the same on EN and RU. Fence newlines are Shift+Enter
- * so chat/forms are not submitted.
+/* Layout-independent "`" via WinCompose: Menu (K_APP), then 6, 0.
+ * F13 is dropped over BLE, so it typed "60". RAlt is AltGr on Russian.
+ * Digits 6/0 are the same on EN and RU. Fence newlines are Shift+Enter.
  *
  * WinCompose (once):
- *   1. Compose key = F13  (Options → Compose key)
- *   2. Add user sequence  Compose, 6, 0  →  `
- *      File %USERPROFILE%\.XCompose :
- *        include "%COMPOSE%"
- *        <Multi_key> <6> <0> : "`"
+ *   1. Compose key = Application / Menu  (settings.ini: compose_key=VK.APPS)
+ *   2. %USERPROFILE%\.XCompose  — this one line only, no include:
+ *        <Multi_key> <6> <0> : "`" # backtick
+ *      Then restart WinCompose.
  */
 
 #define UC_MACRO_TAP_MS 5
@@ -188,7 +186,7 @@
             tap-ms = <UC_MACRO_TAP_MS>;
             bindings =
                 <&macro_tap>,
-                <&kp F13 &kp N6 &kp N0 &kp F13 &kp N6 &kp N0 &kp LEFT>;
+                <&kp K_APP &kp N6 &kp N0 &kp K_APP &kp N6 &kp N0 &kp LEFT>;
         };
 
         // Double tap: fence with Shift+Enter newlines, caret on the empty middle line.
@@ -200,13 +198,13 @@
             tap-ms = <UC_MACRO_TAP_MS>;
             bindings =
                 <&macro_tap>,
-                <&kp F13 &kp N6 &kp N0
-                 &kp F13 &kp N6 &kp N0
-                 &kp F13 &kp N6 &kp N0
+                <&kp K_APP &kp N6 &kp N0
+                 &kp K_APP &kp N6 &kp N0
+                 &kp K_APP &kp N6 &kp N0
                  &kp LS(ENTER) &kp LS(ENTER)
-                 &kp F13 &kp N6 &kp N0
-                 &kp F13 &kp N6 &kp N0
-                 &kp F13 &kp N6 &kp N0
+                 &kp K_APP &kp N6 &kp N0
+                 &kp K_APP &kp N6 &kp N0
+                 &kp K_APP &kp N6 &kp N0
                  &kp LS(ENTER) &kp UP &kp UP>;
         };
     };
