@@ -35,6 +35,11 @@
 #define UC_HOST_MACOS 4
 #define UC_HOST UC_HOST_WIN_COMPOSE
 
+/* Per-key delay for unicode macros. 40ms made them sluggish; 5ms matches
+ * zmk-unicode defaults. Raise these if characters come out mangled over BLE. */
+#define UC_MACRO_TAP_MS 5
+#define UC_MACRO_WAIT_MS 5
+
 #if UC_HOST == UC_HOST_WIN_COMPOSE
 #define UC_GRAVE_KEYS &kp RALT &kp U &kp N6 &kp N0 &kp RET
 #elif UC_HOST == UC_HOST_LINUX
@@ -201,8 +206,8 @@
         bt_pair: backtick_pair {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <40>;
-            tap-ms = <40>;
+            wait-ms = <UC_MACRO_WAIT_MS>;
+            tap-ms = <UC_MACRO_TAP_MS>;
             bindings =
 #if UC_HOST == UC_HOST_WIN_COMPOSE || UC_HOST == UC_HOST_LINUX
                 <&macro_tap UC_GRAVE_KEYS UC_GRAVE_KEYS &kp LEFT>
@@ -219,14 +224,15 @@
         bt_fence: code_fence {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <40>;
-            tap-ms = <40>;
+            wait-ms = <UC_MACRO_WAIT_MS>;
+            tap-ms = <UC_MACRO_TAP_MS>;
             bindings =
 #if UC_HOST == UC_HOST_WIN_COMPOSE || UC_HOST == UC_HOST_LINUX
                 <&macro_tap UC_GRAVE_KEYS UC_GRAVE_KEYS UC_GRAVE_KEYS
                             &kp ENTER &kp ENTER
                             UC_GRAVE_KEYS UC_GRAVE_KEYS UC_GRAVE_KEYS
-                            &kp ENTER &kp UP &kp UP>
+                            &kp ENTER &kp UP &kp UP>,
+                <&macro_release &kp RET &kp ENTER>
 #else
                 UC_GRAVE_BINDINGS,
                 UC_GRAVE_BINDINGS,
@@ -235,7 +241,8 @@
                 UC_GRAVE_BINDINGS,
                 UC_GRAVE_BINDINGS,
                 UC_GRAVE_BINDINGS,
-                <&macro_tap &kp ENTER &kp UP &kp UP>
+                <&macro_tap &kp ENTER &kp UP &kp UP>,
+                <&macro_release &kp RET &kp ENTER>
 #endif
                 ;
         };

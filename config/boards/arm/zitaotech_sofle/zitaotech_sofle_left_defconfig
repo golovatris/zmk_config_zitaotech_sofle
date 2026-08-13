@@ -85,6 +85,10 @@ CONFIG_ZMK_USB_LOGGING=n
 CONFIG_EC11=y
 CONFIG_EC11_TRIGGER_GLOBAL_THREAD=y
 
+# Fence macro is ~70 HID events; default 64 drops the final Enter release
+# (OS then repeats newlines until another key is pressed).
+CONFIG_ZMK_BEHAVIORS_QUEUE_SIZE=256
+
 # Enable Mouse
 CONFIG_INPUT=y
 CONFIG_ZMK_MOUSE=y
