@@ -310,11 +310,11 @@
         default_layer {
             display-name = "QWERTY";
             bindings = <
-&kp ESC     &kp N1        &kp N2         &kp N3    &kp N4          &kp N5                &kp C_MUTE      &kp C_MUTE  &kp N6     &kp N7     &kp N8  &kp N9    &kp N0     &kp BACKSPACE
-&kp GRAVE   &kp Q         &kp W          &kp E     &kp R           &kp T                 &kp Y           &kp U       &kp I      &kp O      &kp P   &kp BSLH
-&mlt 3 TAB  &kp A         &kp S          &kp D     &kp F           &kp G                 &mkp LCLK       &mkp LCLK   &kp H      &kp J      &kp K   &kp L     &kp SEMI   &kp LEFT_GUI
-&mod_key    &kp Z         &kp X          &kp C     &kp V           &kp B                 &kp PG_DN       &kp PG_UP   &mkp LCLK  &mkp RCLK  &kp N   &kp M     &kp COMMA  &kp DOT        &kp FSLH  &mod_key
-&mo 2       &kp LEFT_ALT  &kp BACKSPACE  &mod_key  &sk LEFT_SHIFT  &mt LEFT_SHIFT ENTER  &mt_lc 0 SPACE  &kp MINUS   &kp EQUAL  &kp GRAVE
+&kp ESC     &kp N1        &kp N2  &kp N3    &kp N4          &kp N5                &kp C_MUTE      &kp C_MUTE  &kp N6     &kp N7     &kp N8  &kp N9    &kp N0     &kp BACKSPACE
+&kp GRAVE   &kp Q         &kp W   &kp E     &kp R           &kp T                 &kp Y           &kp U       &kp I      &kp O      &kp P   &kp BSLH
+&mlt 3 TAB  &kp A         &kp S   &kp D     &kp F           &kp G                 &mkp LCLK       &mkp LCLK   &kp H      &kp J      &kp K   &kp L     &kp SEMI   &kp LEFT_GUI
+&mod_key    &kp Z         &kp X   &kp C     &kp V           &kp B                 &kp PG_DN       &kp PG_UP   &mkp LCLK  &mkp RCLK  &kp N   &kp M     &kp COMMA  &kp DOT        &kp FSLH  &mod_key
+&mo 2       &kp LEFT_ALT  &mo 2   &mod_key  &sk LEFT_SHIFT  &mt LEFT_SHIFT ENTER  &mt_lc 0 SPACE  &kp MINUS   &kp EQUAL  &kp GRAVE
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp LEFT RIGHT>;
@@ -336,11 +336,11 @@
         raise_layer {
             display-name = "RAISE";
             bindings = <
-&bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &none            &bt BT_CLR  &none  &none        &none  &none  &none  &none  &none
-&none         &none         &none         &none         &none         &out OUT_TOG     &none       &none  &none        &none  &none  &none
-&none         &none         &none         &none         &none         &none            &none       &none  &none        &none  &none  &none  &none  &none
-&none         &none         &none         &none         &none         &rgb_ug RGB_TOG  &none       &none  &none        &none  &none  &none  &none  &none  &none  &none
-&none         &bootloader   &none         &none         &none         &none            &none       &none  &bootloader  &none
+&bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &none            &bt BT_CLR  &none            &none            &none            &none            &none            &none            &kp KP_NUMLOCK
+&none         &none         &none         &none         &none         &out OUT_TOG     &none       &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &none            &none
+&none         &none         &none         &none         &none         &none            &none       &none            &none            &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &kp KP_NUMBER_0  &none
+&none         &none         &none         &none         &none         &rgb_ug RGB_TOG  &none       &none            &none            &none            &none            &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &none  &none
+&none         &bootloader   &none         &none         &none         &none            &none       &none            &bootloader      &none
             >;
         };
 
