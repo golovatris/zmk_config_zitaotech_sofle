@@ -59,7 +59,7 @@ layers:
   - '&mod_key'
   - RAISE
   - LEFT ALT
-  - BACKSPACE
+  - RAISE
   - '&mod_key'
   - {t: LEFT SHIFT, h: sticky}
   - {t: ENTER, h: LEFT SHIFT}
@@ -148,7 +148,7 @@ layers:
   - ''
   - ''
   - ''
-  - ''
+  - KP NUMLOCK
   - ''
   - ''
   - ''
@@ -156,6 +156,9 @@ layers:
   - ''
   - OUT TOG
   - ''
+  - KP 7
+  - KP 8
+  - KP 9
   - ''
   - ''
   - ''
@@ -167,13 +170,10 @@ layers:
   - ''
   - ''
   - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
+  - KP 4
+  - KP 5
+  - KP 6
+  - KP 0
   - ''
   - ''
   - ''
@@ -186,9 +186,9 @@ layers:
   - ''
   - ''
   - ''
-  - ''
-  - ''
-  - ''
+  - KP 1
+  - KP 2
+  - KP 3
   - ''
   - ''
   - {type: held}
