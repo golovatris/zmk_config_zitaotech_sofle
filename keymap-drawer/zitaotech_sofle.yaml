@@ -81,7 +81,7 @@ layers:
   - F8
   - F9
   - F10
-  - F11
+  - DELETE
   - '&td_bt'
   - ESCAPE
   - Ctl+PAGE UP
@@ -93,7 +93,7 @@ layers:
   - UP
   - END
   - PRINTSCREEN
-  - F12
+  - F11
   - TAB
   - ''
   - Alt+Ctl+LEFT ARROW
@@ -107,7 +107,7 @@ layers:
   - DOWN
   - RIGHT
   - ''''
-  - DELETE
+  - F12
   - Alt+F4
   - {t: ▽, type: trans}
   - Sft+Ctl+PAGE UP
