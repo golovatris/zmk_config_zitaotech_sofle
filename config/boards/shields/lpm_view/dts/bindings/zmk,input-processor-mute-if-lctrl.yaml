@@ -7,3 +7,5 @@ properties:
     type: int
     required: true
     const: 0
+  track-remainders:
+    type: boolean
