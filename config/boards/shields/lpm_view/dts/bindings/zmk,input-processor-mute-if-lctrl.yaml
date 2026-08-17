@@ -1,0 +1,9 @@
+description: Drop relative pointer/scroll events while Left Ctrl is in the HID report
+
+compatible: "zmk,input-processor-mute-if-lctrl"
+
+properties:
+  "#input-processor-cells":
+    type: int
+    required: true
+    const: 0
