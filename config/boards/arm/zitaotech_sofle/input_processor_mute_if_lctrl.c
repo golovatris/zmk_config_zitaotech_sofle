@@ -12,7 +12,10 @@
 
 #include <drivers/input_processor.h>
 #include <dt-bindings/zmk/modifiers.h>
+
+#if !IS_ENABLED(CONFIG_ZMK_SPLIT) || IS_ENABLED(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
 #include <zmk/hid.h>
+#endif
 
 LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
@@ -44,6 +47,7 @@ static int mute_if_lctrl_handle_event(const struct device *dev, struct input_eve
         return ZMK_INPUT_PROC_CONTINUE;
     }
 
+#if !IS_ENABLED(CONFIG_ZMK_SPLIT) || IS_ENABLED(CONFIG_ZMK_SPLIT_ROLE_CENTRAL)
     const struct zmk_hid_keyboard_report *report = zmk_hid_get_keyboard_report();
     if (report == NULL) {
         return ZMK_INPUT_PROC_CONTINUE;
@@ -53,6 +57,7 @@ static int mute_if_lctrl_handle_event(const struct device *dev, struct input_eve
     if ((report->body.modifiers & MOD_LCTL) != 0) {
         return ZMK_INPUT_PROC_STOP;
     }
+#endif
 
     return ZMK_INPUT_PROC_CONTINUE;
 }
