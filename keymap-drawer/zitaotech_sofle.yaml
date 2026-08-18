@@ -109,7 +109,7 @@ layers:
   - ''''
   - F12
   - Alt+F4
-  - {t: ▽, type: trans}
+  - Gui+DOWN ARROW
   - Sft+Ctl+PAGE UP
   - Ctl+W
   - Sft+Ctl+PAGE DOWN
