@@ -17,6 +17,8 @@
 #define RES 2
 #define LOWER 1
 #define ALT_TAB_LAYER 4
+#define MOUSE_SLOW 5
+#define MOUSE_FAST 6
 #define BOT bootloader
 
 /* Layout-independent "`" via WinCompose: Menu (K_APP), then 6, 0.
@@ -84,6 +86,16 @@
             #input-processor-cells = <2>;
             type = <INPUT_EV_REL>;
             codes = <INPUT_REL_X>;
+            track-remainders;
+        };
+
+        /* Scale &mmv X/Y. Params are multiplier then divisor (max 16). */
+
+        ip_xy_scale: ip_xy_scale {
+            compatible = "zmk,input-processor-scaler";
+            #input-processor-cells = <2>;
+            type = <INPUT_EV_REL>;
+            codes = <INPUT_REL_X INPUT_REL_Y>;
             track-remainders;
         };
 
@@ -307,7 +319,7 @@
 &none   &none  &kp C_AC_BACK     &none      &kp C_AC_FORWARD   &none    &msc SCRL_UP  &msc SCRL_LEFT  &mmv MOVE_UP    &msc SCRL_RIGHT  &none           &none
 &trans  &none  &mkp RCLK         &mkp MCLK  &mkp LCLK          &none    &none         &none           &msc SCRL_DOWN  &mmv MOVE_LEFT   &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &none  &none
 &none   &none  &kp LC(LG(LEFT))  &none      &kp LC(LG(RIGHT))  &none    &none         &none           &none           &none            &none           &none            &none  &none       &none  &none
-&none   &none  &none             &none      &kp F21            &kp F22  &trans        &none           &none           &none
+&none   &none  &none             &none      &mo MOUSE_SLOW     &mo MOUSE_FAST  &trans        &none           &none           &none
             >;
         };
 
@@ -323,6 +335,31 @@
 &trans  &trans  &trans  &trans   &trans  &trans  &trans  &trans  &trans  &trans
             >;
         };
+
+        // Held by F21/F22 on Mouse. All &trans so &mmv keys stay on Mouse;
+        // speed is applied by &mmv_input_listener scalers below.
+
+        mouse_slow {
+            display-name = "Slow";
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+            >;
+        };
+
+        mouse_fast {
+            display-name = "Fast";
+            bindings = <
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+            >;
+        };
     };
 };
 
@@ -332,6 +369,21 @@
  *
  * ip_mute_if_lctrl drops movement when Left Ctrl is in the HID report, including
  * implicit mods from LC(...) keys (Ctrl+Tab, Ctrl+W, etc.). */
+
+/* F21 (MOUSE_SLOW) = 1/3 &mmv speed; F22 (MOUSE_FAST) = 3x. Scroll keys are unchanged.
+ * Slow is listed first so it wins if both thumbs are held. */
+
+&mmv_input_listener {
+    slow {
+        layers = <MOUSE_SLOW>;
+        input-processors = <&ip_xy_scale 1 3>;
+    };
+
+    fast {
+        layers = <MOUSE_FAST>;
+        input-processors = <&ip_xy_scale 3 1>;
+    };
+};
 
 &trackpoint_listener {
     scroller {

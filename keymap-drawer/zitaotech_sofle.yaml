@@ -262,8 +262,8 @@ layers:
   - ''
   - ''
   - ''
-  - F21
-  - F22
+  - {h: Slow}
+  - {h: Fast}
   - {t: ▽, type: trans}
   - ''
   - ''
