@@ -303,11 +303,11 @@
         Mouse {
             display-name = "Mouse";
             bindings = <
-&none   &none  &none             &none      &none              &none  &none         &none           &none           &none            &none           &none            &none  &kp DELETE
-&none   &none  &kp C_AC_BACK     &none      &kp C_AC_FORWARD   &none  &msc SCRL_UP  &msc SCRL_LEFT  &mmv MOVE_UP    &msc SCRL_RIGHT  &none           &none
-&trans  &none  &mkp RCLK         &mkp MCLK  &mkp LCLK          &none  &none         &none           &msc SCRL_DOWN  &mmv MOVE_LEFT   &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &none  &none
-&none   &none  &kp LC(LG(LEFT))  &none      &kp LC(LG(RIGHT))  &none  &none         &none           &none           &none            &none           &none            &none  &none       &none  &none
-&none   &none  &none             &none      &kp DELETE         &none  &trans        &none           &none           &none
+&none   &none  &none             &none      &none              &none    &none         &none           &none           &none            &none           &none            &none  &kp DELETE
+&none   &none  &kp C_AC_BACK     &none      &kp C_AC_FORWARD   &none    &msc SCRL_UP  &msc SCRL_LEFT  &mmv MOVE_UP    &msc SCRL_RIGHT  &none           &none
+&trans  &none  &mkp RCLK         &mkp MCLK  &mkp LCLK          &none    &none         &none           &msc SCRL_DOWN  &mmv MOVE_LEFT   &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &none  &none
+&none   &none  &kp LC(LG(LEFT))  &none      &kp LC(LG(RIGHT))  &none    &none         &none           &none           &none            &none           &none            &none  &none       &none  &none
+&none   &none  &none             &none      &kp F21            &kp F22  &trans        &none           &none           &none
             >;
         };
 
