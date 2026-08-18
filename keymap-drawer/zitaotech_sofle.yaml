@@ -262,8 +262,8 @@ layers:
   - ''
   - ''
   - ''
-  - DELETE
-  - ''
+  - F21
+  - F22
   - {t: ▽, type: trans}
   - ''
   - ''
