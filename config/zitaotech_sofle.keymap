@@ -168,7 +168,19 @@
                 <&kp K_APP &kp N6 &kp N0 &kp K_APP &kp N6 &kp N0 &kp LEFT>;
         };
 
-        // Double tap: fence with Shift+Enter newlines, caret on the empty middle line.
+        // Double tap: "```" with the caret after the backticks.
+
+        bt_triple: backtick_triple {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <UC_MACRO_WAIT_MS>;
+            tap-ms = <UC_MACRO_TAP_MS>;
+            bindings =
+                <&macro_tap>,
+                <&kp K_APP &kp N6 &kp N0 &kp K_APP &kp N6 &kp N0 &kp K_APP &kp N6 &kp N0>;
+        };
+
+        // Triple tap: fence with Shift+Enter newlines, caret on the empty middle line.
 
         bt_fence: code_fence {
             compatible = "zmk,behavior-macro";
@@ -202,13 +214,13 @@
     };
 
     behaviors {
-        // Single tap: "``" pair. Double tap: markdown code fence block.
+        // Single tap: "``" pair. Double tap: "```". Triple tap: markdown code fence block.
 
         td_bt: tap_dance_backtick {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <400>;
-            bindings = <&bt_pair>, <&bt_fence>;
+            bindings = <&bt_pair>, <&bt_triple>, <&bt_fence>;
         };
     };
 
