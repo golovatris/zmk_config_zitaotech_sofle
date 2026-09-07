@@ -218,9 +218,9 @@ layers:
   - DELETE
   - ''
   - ''
-  - AC BACK
+  - '&mkp MB4'
   - ''
-  - AC FORWARD
+  - '&mkp MB5'
   - ''
   - '&msc SCRL_UP'
   - '&msc SCRL_LEFT'
