@@ -319,7 +319,7 @@
 &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &none            &bt BT_CLR  &none            &none            &none            &none            &none            &none            &kp KP_NUMLOCK
 &none         &none         &none         &none         &none         &out OUT_TOG     &none       &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &none            &none
 &none         &none         &none         &none         &none         &none            &none       &none            &none            &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &kp KP_NUMBER_0  &none
-&none         &none         &none         &none         &none         &rgb_ug RGB_TOG  &none       &none            &none            &none            &none            &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &none  &none
+&kp F14       &none         &none         &none         &none         &rgb_ug RGB_TOG  &none       &none            &none            &none            &none            &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &none  &none
 &none         &bootloader   &none         &none         &none         &none            &none       &none            &bootloader      &none
             >;
         };
@@ -331,10 +331,10 @@
         Mouse {
             display-name = "Mouse";
             bindings = <
-&none   &none  &none             &none      &none              &none    &none         &none           &none           &none            &none           &none            &none  &kp DELETE
-&none   &none  &mkp MB4          &none      &mkp MB5           &none    &msc SCRL_UP  &msc SCRL_LEFT  &mmv MOVE_UP    &msc SCRL_RIGHT  &none           &none
-&trans  &none  &mkp RCLK         &mkp MCLK  &mkp LCLK          &none    &none         &none           &msc SCRL_DOWN  &mmv MOVE_LEFT   &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &none  &none
-&none   &none  &kp LC(LG(LEFT))  &none      &kp LC(LG(RIGHT))  &none    &none         &none           &none           &none            &none           &none            &none  &none       &none  &none
+&none   &none  &none             &none      &none              &none           &none         &none           &none           &none            &none           &none            &none  &kp DELETE
+&none   &none  &mkp MB4          &none      &mkp MB5           &none           &msc SCRL_UP  &msc SCRL_LEFT  &mmv MOVE_UP    &msc SCRL_RIGHT  &none           &none
+&trans  &none  &mkp RCLK         &mkp MCLK  &mkp LCLK          &none           &none         &none           &msc SCRL_DOWN  &mmv MOVE_LEFT   &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &none  &none
+&none   &none  &kp LC(LG(LEFT))  &none      &kp LC(LG(RIGHT))  &none           &none         &none           &none           &none            &none           &none            &none  &none       &none  &none
 &none   &none  &none             &none      &mo MOUSE_SLOW     &mo MOUSE_FAST  &trans        &none           &none           &none
             >;
         };
@@ -385,7 +385,6 @@
  *
  * ip_mute_if_lctrl drops movement when Left Ctrl is in the HID report, including
  * implicit mods from LC(...) keys (Ctrl+Tab, Ctrl+W, etc.). */
-
 /* F21 (MOUSE_SLOW) = 1/3 &mmv speed; F22 (MOUSE_FAST) = 3x. Scroll keys are unchanged.
  * Slow is listed first so it wins if both thumbs are held. */
 
