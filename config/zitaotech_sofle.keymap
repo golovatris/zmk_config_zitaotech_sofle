@@ -316,11 +316,11 @@
         raise_layer {
             display-name = "RAISE";
             bindings = <
-&bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &none            &bt BT_CLR  &none            &none            &none            &none            &none            &none            &kp KP_NUMLOCK
-&none         &none         &none         &none         &none         &out OUT_TOG     &none       &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &none            &none
-&none         &none         &none         &none         &none         &none            &none       &none            &none            &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &kp KP_NUMBER_0  &none
-&kp F14       &none         &none         &none         &none         &rgb_ug RGB_TOG  &none       &none            &none            &none            &none            &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &none  &none
-&none         &bootloader   &none         &none         &none         &none            &none       &none            &bootloader      &none
+&bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &none            &bt BT_CLR    &none            &none            &none            &none            &none            &none            &kp KP_NUMLOCK
+&none         &none         &none         &none         &none         &out OUT_TOG     &kp ASTERISK  &kp KP_NUMBER_7  &kp KP_NUMBER_8  &kp KP_NUMBER_9  &none            &none
+&none         &none         &none         &none         &none         &none            &none         &none            &kp SLASH        &kp KP_NUMBER_4  &kp KP_NUMBER_5  &kp KP_NUMBER_6  &kp KP_NUMBER_0  &none
+&kp F14       &none         &none         &none         &none         &rgb_ug RGB_TOG  &none         &none            &none            &none            &none            &kp KP_NUMBER_1  &kp KP_NUMBER_2  &kp KP_NUMBER_3  &kp PERIOD  &none
+&none         &bootloader   &none         &none         &none         &kp MINUS        &kp EQUAL     &none            &bootloader      &none
             >;
         };
 
