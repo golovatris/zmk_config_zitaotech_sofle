@@ -155,7 +155,7 @@ layers:
   - ''
   - ''
   - OUT TOG
-  - ''
+  - '*'
   - KP 7
   - KP 8
   - KP 9
@@ -169,7 +169,7 @@ layers:
   - ''
   - ''
   - ''
-  - ''
+  - /
   - KP 4
   - KP 5
   - KP 6
@@ -189,15 +189,15 @@ layers:
   - KP 1
   - KP 2
   - KP 3
-  - ''
+  - .
   - ''
   - {type: held}
   - '&bootloader'
   - ''
   - ''
   - ''
-  - ''
-  - ''
+  - '-'
+  - '='
   - ''
   - '&bootloader'
   - ''
